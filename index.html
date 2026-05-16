@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 🔧 CHANGE FAVICON: Replace with your own favicon -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <title>Nuri Global — Two Worlds, One Heritage</title>
+    <meta name="description"
+        content="Nuri Global — Home of Nuri Coffenesia and Nuri Coconutnesia. Premium Indonesian coffee and coconut products.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Page Transition Overlay -->
+    <div class="page-transition"></div>
+
+    <!-- Landing Logo -->
+    <div class="landing-logo">Nuri Global</div>
+
+    <!-- ========================
+       SPLIT SCREEN LANDING
+       ======================== -->
+    <div class="landing-wrapper">
+
+        <!-- LEFT: COFFENESIA -->
+        <div class="landing-side landing-side--coffee" data-link="coffenesia.html" data-theme="coffee">
+            <!-- 🔧 CHANGE BACKGROUND: Replace this URL with your own coffee image -->
+            <div class="landing-bg" style="background-image: url('http://static.photos/food/1200x630/10');"></div>
+            <div class="landing-content">
+                <div class="landing-icon">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M48 28H16a4 4 0 0 0-4 4v4a16 16 0 0 0 16 16h8a16 16 0 0 0 16-16v-4a4 4 0 0 0-4-4z" />
+                        <path d="M24 28V18a8 8 0 0 1 16 0v10" />
+                        <path d="M20 52h24" />
+                        <path d="M32 52v4" />
+                    </svg>
+                </div>
+                <h1 class="landing-brand" data-i18n="landing.coffee.title">Nuri Coffenesia</h1>
+                <p class="landing-tagline" data-i18n="landing.coffee.tagline">The Soul of Indonesian Coffee</p>
+                <a class="landing-cta" data-i18n="landing.coffee.cta">Explore Brand <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="landing-divider"></div>
+
+        <!-- RIGHT: COCONUTNESIA -->
+        <div class="landing-side landing-side--coconut" data-link="coconutnesia.html" data-theme="coconut">
+            <!-- 🔧 CHANGE BACKGROUND: Replace this URL with your own coconut image -->
+            <div class="landing-bg" style="background-image: url('http://static.photos/nature/1200x630/20');"></div>
+            <div class="landing-content">
+                <div class="landing-icon">
+                    <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="32" cy="30" r="18" />
+                        <path d="M26 14c2 6 2 12 0 18" />
+                        <path d="M38 14c-2 6-2 12 0 18" />
+                        <path d="M32 12v36" />
+                        <path d="M20 46c4-2 8-3 12-3s8 1 12 3" />
+                    </svg>
+                </div>
+                <h1 class="landing-brand" data-i18n="landing.coconut.title">Nuri Coconutnesia</h1>
+                <p class="landing-tagline" data-i18n="landing.coconut.tagline">The Essence of Tropical Coconut</p>
+                <a class="landing-cta" data-i18n="landing.coconut.cta">Explore Brand <i
+                        class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Language Switcher (Fixed on landing) -->
+    <div class="lang-switch" style="position:fixed; top:28px; right:28px; z-index:100;">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="id">ID</button>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <!-- 🔧 CHANGE PHONE NUMBER: Replace 6281234567890 with your actual WhatsApp number -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 🔧 CHANGE FAVICON -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <title>Nuri Coffenesia — Premium Indonesian Coffee</title>
+    <meta name="description"
+        content="Nuri Coffenesia — Experience the authentic taste of Indonesia's finest coffee. Premium Arabica and Robusta from volcanic highlands.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="theme-coffee">
+
+    <!-- ========================
+       HEADER
+       ======================== -->
+    <header class="header">
+        <div class="header-inner">
+            <div style="display:flex; align-items:center;">
+                <a href="index.html" class="back-home">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span data-i18n="nav.back">Back</span>
+                </a>
+                <a href="index.html" class="header-brand">Nuri Coffenesia</a>
+            </div>
+
+            <nav class="header-nav">
+                <a href="#about" data-i18n="nav.about">About Us</a>
+                <a href="#activity" data-i18n="nav.activity">Activity</a>
+                <a href="#shop" data-i18n="nav.shop">Shop</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="id">ID</button>
+                </div>
+                <button class="menu-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="#about" data-i18n="nav.about">About Us</a>
+        <a href="#activity" data-i18n="nav.activity">Activity</a>
+        <a href="#shop" data-i18n="nav.shop">Shop</a>
+        <a href="index.html" data-i18n="nav.back">Back</a>
+    </div>
+
+    <!-- ========================
+       HERO
+       ======================== -->
+    <section class="hero" id="hero">
+        <!-- 🔧 CHANGE BACKGROUND: Replace with your own coffee hero image -->
+        <div class="hero-bg" style="background-image: url('http://static.photos/food/1200x630/5');"></div>
+        <div class="hero-content">
+            <p class="hero-label" data-i18n="coffee.hero.label">Established 2018</p>
+            <h1 class="hero-title" data-i18n="coffee.hero.title">Nuri Coffenesia</h1>
+            <p class="hero-subtitle" data-i18n="coffee.hero.subtitle">From the volcanic highlands of Indonesia to your
+                cup — experience the authentic taste of nature's finest coffee.</p>
+        </div>
+        <div class="hero-scroll">
+            <span data-i18n="scroll.down">Scroll Down</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- ========================
+       ABOUT / HISTORY
+       ======================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <!-- 🔧 CHANGE IMAGE: Replace with your own about section image -->
+                    <img src="http://static.photos/food/640x360/8" alt="Coffee Heritage">
+                    <div class="about-badge">
+                        <div class="about-badge-number" data-i18n="coffee.badge.number">6+</div>
+                        <div class="about-badge-text" data-i18n="coffee.badge.text">Years of Heritage</div>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <span class="section-label reveal" data-i18n="coffee.about.label">Our Heritage</span>
+                    <h2 class="section-title reveal" data-i18n="coffee.about.title">A Legacy Brewed in Tradition</h2>
+                    <p class="section-desc reveal reveal-delay-1" data-i18n="coffee.about.desc1">Nuri Coffenesia was
+                        born from a deep reverence for Indonesia's centuries-old coffee heritage. The archipelago's
+                        unique volcanic soil and tropical climate create the perfect conditions for growing some of the
+                        world's finest coffee beans.</p>
+                    <p class="section-desc reveal reveal-delay-2" data-i18n="coffee.about.desc2">From the highlands of
+                        Sumatra to the slopes of Java, our journey began with a simple mission: to bring the authentic
+                        taste of Indonesian coffee to the world while empowering the local farming communities that make
+                        it possible.</p>
+
+                    <div class="about-features">
+                        <div class="about-feature reveal reveal-delay-3">
+                            <div class="about-feature-icon"><i class="fa-solid fa-mountain"></i></div>
+                            <div>
+                                <h4 data-i18n="coffee.about.f1.title">Premium Arabica</h4>
+                                <p data-i18n="coffee.about.f1.desc">Sourced from highland farms at 1,200m+ elevation</p>
+                            </div>
+                        </div>
+                        <div class="about-feature reveal reveal-delay-4">
+                            <div class="about-feature-icon"><i class="fa-solid fa-fire"></i></div>
+                            <div>
+                                <h4 data-i18n="coffee.about.f2.title">Artisan Roasting</h4>
+                                <p data-i18n="coffee.about.f2.desc">Traditional roasting with modern precision</p>
+                            </div>
+                        </div>
+                        <div class="about-feature reveal reveal-delay-5">
+                            <div class="about-feature-icon"><i class="fa-solid fa-handshake"></i></div>
+                            <div>
+                                <h4 data-i18n="coffee.about.f3.title">Community First</h4>
+                                <p data-i18n="coffee.about.f3.desc">Direct trade supporting 500+ local farmers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+       PRODUCTS
+       ======================== -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-header">
+                <span class="section-label reveal" data-i18n="coffee.products.label">Our Collection</span>
+                <h2 class="section-title reveal" data-i18n="coffee.products.title">Signature Coffee Products</h2>
+                <p class="section-desc reveal reveal-delay-1" data-i18n="coffee.products.desc">Each blend tells a story
+                    of its origin, carefully crafted to deliver an unparalleled coffee experience.</p>
+                <div class="accent-line reveal reveal-delay-2"></div>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card reveal reveal-delay-1">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/11" alt="Sumatra Mandheling">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p1.name">Sumatra Mandheling</h3>
+                        <p class="product-desc" data-i18n="coffee.p1.desc">Full-bodied with earthy chocolate notes and a
+                            silky finish</p>
+                        <div class="product-footer">
+                            <span class="product-price">$24.90</span>
+                            <button class="product-order" data-order="Sumatra Mandheling"
+                                data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card reveal reveal-delay-2">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/12" alt="Java Robusta Premium">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p2.name">Java Robusta Premium</h3>
+                        <p class="product-desc" data-i18n="coffee.p2.desc">Bold and intense with smoky caramel
+                            undertones</p>
+                        <div class="product-footer">
+                            <span class="product-price">$19.90</span>
+                            <button class="product-order" data-order="Java Robusta Premium"
+                                data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card reveal reveal-delay-3">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/13" alt="Toraja Sapan">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p3.name">Toraja Sapan</h3>
+                        <p class="product-desc" data-i18n="coffee.p3.desc">Rich and complex with dark fruit and spice
+                            accents</p>
+                        <div class="product-footer">
+                            <span class="product-price">$28.90</span>
+                            <button class="product-order" data-order="Toraja Sapan" data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card reveal reveal-delay-4">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/14" alt="Gayo Highland">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p4.name">Gayo Highland</h3>
+                        <p class="product-desc" data-i18n="coffee.p4.desc">Clean and bright with floral honey sweetness
+                        </p>
+                        <div class="product-footer">
+                            <span class="product-price">$26.90</span>
+                            <button class="product-order" data-order="Gayo Highland" data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card reveal reveal-delay-5">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/15" alt="Bali Kintamani">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p5.name">Bali Kintamani</h3>
+                        <p class="product-desc" data-i18n="coffee.p5.desc">Vibrant citrus acidity with a smooth nutty
+                            body</p>
+                        <div class="product-footer">
+                            <span class="product-price">$22.90</span>
+                            <button class="product-order" data-order="Bali Kintamani" data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card reveal reveal-delay-6">
+                    <div class="product-image">
+                        <img src="http://static.photos/food/640x360/16" alt="Liberica Rarest Blend">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name" data-i18n="coffee.p6.name">Liberica Rarest Blend</h3>
+                        <p class="product-desc" data-i18n="coffee.p6.desc">Exotic and unique with tropical mango and
+                            woody aroma</p>
+                        <div class="product-footer">
+                            <span class="product-price">$34.90</span>
+                            <button class="product-order" data-order="Liberica Rarest Blend"
+                                data-i18n="nav.shop">Shop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+       ACTIVITY
+       ======================== -->
+    <section class="activity" id="activity">
+        <div class="container">
+            <div class="activity-header">
+                <span class="section-label reveal" data-i18n="coffee.activity.label">What We Do</span>
+                <h2 class="section-title reveal" data-i18n="coffee.activity.title">Our Activities</h2>
+                <p class="section-desc reveal reveal-delay-1" data-i18n="coffee.activity.desc">Beyond coffee, we
+                    cultivate communities and preserve traditions.</p>
+                <div class="accent-line reveal reveal-delay-2"></div>
+            </div>
+
+            <div class="activity-grid">
+                <div class="activity-card reveal reveal-delay-1">
+                    <div class="activity-card-bg"
+                        style="background-image: url('http://static.photos/season/640x360/1');"></div>
+                    <div class="activity-card-overlay"></div>
+                    <span class="activity-card-number">01</span>
+                    <div class="activity-card-content">
+                        <h3 data-i18n="coffee.a1.title">Sustainable Farming</h3>
+                        <p data-i18n="coffee.a1.desc">Organic cultivation methods that protect the ecosystem and enhance
+                            bean quality.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card reveal reveal-delay-2">
+                    <div class="activity-card-bg"
+                        style="background-image: url('http://static.photos/food/640x360/22');"></div>
+                    <div class="activity-card-overlay"></div>
+                    <span class="activity-card-number">02</span>
+                    <div class="activity-card-content">
+                        <h3 data-i18n="coffee.a2.title">Artisan Roasting</h3>
+                        <p data-i18n="coffee.a2.desc">Small-batch roasting to unlock each bean's unique flavor profile.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="activity-card reveal reveal-delay-3">
+                    <div class="activity-card-bg"
+                        style="background-image: url('http://static.photos/education/640x360/1');"></div>
+                    <div class="activity-card-overlay"></div>
+                    <span class="activity-card-number">03</span>
+                    <div class="activity-card-content">
+                        <h3 data-i18n="coffee.a3.title">Farmer Education</h3>
+                        <p data-i18n="coffee.a3.desc">Training programs empowering the next generation of coffee
+                            growers.</p>
+                    </div>
+                </div>
+
+                <div class="activity-card reveal reveal-delay-4">
+                    <div class="activity-card-bg"
+                        style="background-image: url('http://static.photos/industry/640x360/1');"></div>
+                    <div class="activity-card-overlay"></div>
+                    <span class="activity-card-number">04</span>
+                    <div class="activity-card-content">
+                        <h3 data-i18n="coffee.a4.title">Global Distribution</h3>
+                        <p data-i18n="coffee.a4.desc">Bringing Indonesian coffee heritage to tables across 25+
+                            countries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+       SHOP / CTA
+       ======================== -->
+    <section class="shop-cta" id="shop">
+        <div class="container">
+            <div class="shop-cta-inner reveal">
+                <div class="shop-cta-decor shop-cta-decor--1"></div>
+                <div class="shop-cta-decor shop-cta-decor--2"></div>
+                <span class="section-label" data-i18n="coffee.shop.label">Order Now</span>
+                <h2 class="section-title" data-i18n="coffee.shop.title">Ready to Taste Excellence?</h2>
+                <p class="section-desc" data-i18n="coffee.shop.desc">Place your order directly via email. We deliver
+                    worldwide with care and precision.</p>
+                <button class="shop-cta-btn" data-order-general>
+                    <span data-i18n="coffee.shop.btn">Order via Email</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================
+       FOOTER
+       ======================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Nuri Coffenesia</div>
+                    <p class="footer-desc" data-i18n="footer.desc.coffee">Bringing the authentic taste of Indonesian
+                        coffee to the world, one cup at a time.</p>
+                    <div class="footer-social">
+                        <!-- 🔧 CHANGE SOCIAL LINKS: Replace # with your actual social media URLs -->
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <!-- 🔧 CHANGE WHATSAPP NUMBER -->
+                        <a href="https://wa.me/6281234567890" aria-label="WhatsApp"><i
+                                class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading" data-i18n="footer.quicklinks">Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="#hero">Home</a>
+                        <a href="#about" data-i18n="nav.about">About Us</a>
+                        <a href="#products">Products</a>
+                        <a href="#activity" data-i18n="nav.activity">Activity</a>
+                        <a href="#shop" data-i18n="nav.shop">Shop</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading" data-i18n="footer.contact">Contact</h4>
+                    <div class="footer-links">
+                        <!-- 🔧 CHANGE EMAIL -->
+                        <a href="mailto:order@nuriglobal.com">order@nuriglobal.com</a>
+                        <!-- 🔧 CHANGE PHONE -->
+                        <a href="tel:+6281234567890">+62 812-3456-7890</a>
+                        <a href="#">Jakarta, Indonesia</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading" data-i18n="footer.follow">Follow Us</h4>
+                    <div class="footer-links">
+                        <a href="#">Instagram</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter / X</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 Nuri Global. <span data-i18n="footer.rights">All rights reserved.</span></span>
+                <a href="index.html">Nuri Global</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <!-- 🔧 CHANGE PHONE NUMBER -->
+    <a href="https://wa.me/6281234567890" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
