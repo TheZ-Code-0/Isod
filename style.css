@@ -670,7 +670,7 @@ a {
 .scroll-line {
     width: 1px;
     height: 40px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
     animation: scrollPulse 2s ease-in-out infinite;
 }
 
@@ -679,8 +679,17 @@ a {
 }
 
 @keyframes scrollPulse {
-    0%, 100% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.5; transform: scaleY(0.6); }
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scaleY(0.6);
+    }
 }
 
 /* --- Story Section --- */
@@ -1229,8 +1238,15 @@ a {
 }
 
 @keyframes waFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .whatsapp-float:hover {
@@ -1387,6 +1403,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -1414,4 +1431,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--brown-400);
+
 }
+

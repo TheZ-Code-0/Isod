@@ -12,6 +12,7 @@ const translations = {
         nav_about: "About Us",
         nav_activity: "Activity",
         nav_shop: "Shop",
+        shop_url: "https://www.tokopedia.com/hikma-langgeng-abadi-store",
         coffee_subtitle: "Premium Coffee",
         coffee_desc: "Discover the rich heritage of Indonesian coffee, crafted with passion and precision.",
         coffee_cta: "Explore Coffee →",
@@ -98,10 +99,11 @@ const translations = {
         footer_connect: "Connect"
     },
     id: {
-        nav_brand: "Merek",
+        nav_brand: "Brand",
         nav_about: "Tentang Kami",
         nav_activity: "Aktivitas",
-        nav_shop: "Belanja",
+        nav_shop: "Shop", // Sudah diubah dari "Belanja" menjadi "Shop"
+        shop_url: "https://www.tokopedia.com/hikma-langgeng-abadi-store",
         coffee_subtitle: "Kopi Premium",
         coffee_desc: "Temukan kekayaan warisan kopi Indonesia, yang dikemas dengan penuh gairah dan presisi.",
         coffee_cta: "Jelajahi Kopi →",
@@ -119,7 +121,7 @@ const translations = {
         coffenesia_story_desc2: "Setiap langkah, dari ceri ke cangkir, dibimbing oleh para maestro yang memahami bahwa kopi hebat bukan sekadar diproduksi — melainkan diracik dengan kesabaran, penghormatan, dan komitmen tanpa kompromi terhadap keunggulan.",
         coconesia_story_title: "Dirawat oleh Matahari Tropis",
         coconesia_story_desc: "Nuri Coconesia merayakan fleksibilitas luar biasa dari warisan kelapa Indonesia. Dari perkebunan pantai yang murni ke meja Anda, kami mengubah buah paling serbaguna dari alam menjadi produk dengan kualitas dan kemurnian yang luar biasa.",
-        coconesia_story_desc2: "Setiap panen adalah bukti praktik pertanian berkelanjutan, bekerja bersama komunitas lokal yang telah membudidayakan kelapa selama generasi, melestarikan kearifan nenek moyang sambil merangkul inovasi.",
+        coconesia_story_desc2: "Setiap panen adalah bukti praktik pertanian berkelanjutan, working hand-in-hand dengan komunitas lokal yang telah membudidayakan kelapa selama generasi, melestarikan kearifan nenek moyang sambil merangkul inovasi.",
         our_products: "Produk Kami",
         coffenesia_products_title: "Diracik untuk Lidah yang Taju",
         coconesia_products_title: "Persembahan Terbaik Alam",
@@ -160,7 +162,7 @@ const translations = {
         our_values: "Nilai Kami",
         company_vision_desc: "Menjadi tolak ukur global untuk komoditas premium Indonesia, menginspirasi dunia melalui kualitas, keberlanjutan, dan warisan autentik.",
         company_mission_desc: "Memberdayakan petani Indonesia, melestarikan keahlian tradisional, dan menghadirkan produk yang menghormati manusia dan planet — memastikan setiap pembelian menciptakan dampak positif.",
-        company_values_desc: "Integritas dalam setiap proses. Keberlanjutan dalam setiap panen. Keunggulan dalam setiap produk. Kami percaya kualitas premium mengalir dari kepedulian tulus — untuk tanah, komunitas, dan kerajinan.",
+        company_values_desc: "Integritas dalam setiap proses. Keberlanjutan dalam setiap panen. Keunggulan dalam setiap product. Kami percaya kualitas premium mengalir dari kepedulian tulus — untuk tanah, komunitas, dan kerajinan.",
         company_story_title: "Di Mana Warisan Bertemu Inovasi",
         company_story_desc: "Raga Isod Nusantara didirikan dengan hasrat tunggal: membawa kekayaan alam luar biasa Indonesia ke dunia. Dari dataran tinggi kopi vulkanik hingga pantai kelapa yang disinari matahari, kami mencari ekspresi termurni dan paling autentik dari tanah ini.",
         company_story_desc2: "Perjalanan kami terjalin dengan kisah ribuan keluarga petani di seluruh kepulauan. Kami tidak hanya mencari bahan — kami membangun kemitraan, melestarikan tradisi, dan menciptakan masa depan berkelanjutan bagi komunitas yang membuat produk kami mungkin.",
@@ -198,6 +200,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Language Switcher ---
     let currentLang = localStorage.getItem('lang') || 'en';
 
+    // --- FORCE SHOP NAV TO TOKOPEDIA ---
+    function applyShopLink(lang) {
+        const shopLinks = document.querySelectorAll('a[data-i18n="nav_shop"], a[data-i18n="shop_now"]');
+        const targetUrl = translations[lang]?.shop_url || "https://www.tokopedia.com/hikma-langgeng-abadi-store";
+
+        shopLinks.forEach(link => {
+            link.href = targetUrl;
+            link.target = "_blank"; // Supaya membuka tab baru
+            link.rel = "noopener noreferrer";
+        });
+    }
+
     function applyLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('lang', lang);
@@ -218,6 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (langLabel) {
             langLabel.textContent = lang === 'en' ? 'ID' : 'EN';
         }
+
+        // Jalankan update link Tokopedia otomatis setiap kali ganti bahasa
+        applyShopLink(lang);
     }
 
     // Apply saved language on load
@@ -260,7 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollY = window.scrollY;
 
         if (header && !header.classList.contains('header-solid')) {
-            // Landing page header — transparent at top, solid on scroll
             if (scrollY > 80) {
                 header.style.background = 'rgba(30, 16, 10, 0.9)';
                 header.style.backdropFilter = 'blur(20px)';
@@ -296,14 +312,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkReveal, { passive: true });
     window.addEventListener('resize', checkReveal, { passive: true });
 
-    // Initial check
     setTimeout(checkReveal, 100);
-    // Also check after all images might have loaded
     setTimeout(checkReveal, 800);
 
     // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
             const target = document.querySelector(targetId);
@@ -314,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     block: 'start'
                 });
 
-                // Close mobile nav if open
                 if (mobileMenuBtn && mobileNavOverlay) {
                     mobileMenuBtn.classList.remove('active');
                     mobileNavOverlay.classList.remove('active');
@@ -329,7 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const splitRight = document.getElementById('splitRight');
 
     if (splitLeft && splitRight) {
-        // Touch support for mobile
         splitLeft.addEventListener('touchstart', () => {
             splitLeft.style.flex = '0.55';
             splitRight.style.flex = '0.45';
@@ -372,7 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        // Set initial state
         whatsappFloat.style.opacity = '0';
         whatsappFloat.style.pointerEvents = 'none';
         whatsappFloat.style.transition = 'opacity 0.4s ease, transform 0.3s ease';
