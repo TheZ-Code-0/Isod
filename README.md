@@ -3,7 +3,7 @@
 
 Selamat datang di repositori resmi **Raga Isod Nusantara**, sebuah platform web premium yang dirancang khusus untuk merepresentasikan keindahan kekayaan alam Nusantara yang diintegrasikan dengan nilai-nilai inklusif dan tata kelola industri berbasis sumber daya alam yang berkelanjutan.
 
-Website ini dibuat dan dikembangkan oleh **XPLOIT**.
+Website ini dibuat dan dikembangkan oleh **Rifqi Sazali**.
 
 ---
 
