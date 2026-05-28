@@ -59,30 +59,25 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
-/* ── Custom Cursor ── */
-body { cursor: none; }
-.cursor {
+/* ── Custom Cursor (ring overlay only, default arrow preserved) ── */
+.cursor-dot { display: none; }
+.cursor-ring {
   position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
+  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+  opacity: 0;
 }
-.cursor-dot {
-  width: 8px; height: 8px;
-  background: var(--white);
-  border-radius: 50%;
-  transform: translate(-50%,-50%);
-  transition: transform 0.1s;
+.cursor-ring.visible { opacity: 1; }
+.cursor-ring.hovered {
+  width: 52px; height: 52px;
+  border-color: var(--gold);
+  opacity: 0.7;
 }
-.cursor-ring {
-  width: 36px; height: 36px;
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 50%;
-  transform: translate(-50%,-50%);
-  transition: width 0.3s, height 0.3s, opacity 0.3s, transform 0.15s;
-}
-.cursor-ring.hovered { width: 56px; height: 56px; opacity: 0.6; }
-@media (hover: none) { body { cursor: auto; } .cursor { display: none; } }
+@media (hover: none) { .cursor-ring { display: none; } }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
@@ -315,15 +310,20 @@ body { cursor: none; }
 
 .split-left .split-bg {
   background-image:
-    radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.25) 0%, transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Crect fill='%231a0f06' width='400' height='400'/%3E%3Ccircle cx='200' cy='200' r='120' fill='none' stroke='%23c9a96e' stroke-width='0.5' opacity='0.3'/%3E%3C/svg%3E");
-  background: radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.18) 0%, transparent 60%),
-    linear-gradient(160deg, #0d0805 0%, #1a0f06 40%, #120b04 100%);
+    linear-gradient(160deg, rgba(13,8,5,0.62) 0%, rgba(26,15,6,0.45) 45%, rgba(18,11,4,0.7) 100%),
+    radial-gradient(ellipse at 30% 60%, rgba(201,169,110,0.20) 0%, transparent 60%),
+    url('assets/img/coffee-hero.jpg');
+  background-size: cover;
+  background-position: 60% center;
 }
 
 .split-right .split-bg {
-  background: radial-gradient(ellipse at 70% 50%, rgba(46,158,91,0.18) 0%, transparent 60%),
-    linear-gradient(160deg, #050f08 0%, #071610 40%, #040e08 100%);
+  background-image:
+    linear-gradient(160deg, rgba(5,15,8,0.6) 0%, rgba(7,22,16,0.42) 45%, rgba(4,14,8,0.7) 100%),
+    radial-gradient(ellipse at 70% 50%, rgba(46,158,91,0.18) 0%, transparent 60%),
+    url('assets/img/coco-hero.jpg');
+  background-size: cover;
+  background-position: 50% center;
 }
 
 .split-panel:hover .split-bg {
@@ -538,24 +538,98 @@ body { cursor: none; }
   z-index: 1;
 }
 
-.coffeenesia-hero .brand-hero-bg {
-  background-image: url('assets/img/coffee.png');
-}
-.coffeenesia-hero .brand-hero-overlay {
-  background: linear-gradient(135deg,
-    rgba(8,8,8,0.85) 0%,
-    rgba(26,15,6,0.65) 50%,
-    rgba(8,8,8,0.5) 100%);
+/* Fine film grain layered onto every photographic hero for a tactile finish */
+.coffeenesia-hero .brand-hero-bg::after,
+.coconesia-hero .brand-hero-bg::after,
+.company-hero .brand-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
+/* Slow Ken-Burns zoom — driven via the standalone `scale` property so the
+   scroll parallax in script.js (which writes `transform`) composes with it
+   instead of overriding it. */
+.coffeenesia-hero .brand-hero-bg,
 .coconesia-hero .brand-hero-bg {
-  background-image: url('assets/img/coco.png');
+  transform-origin: 65% 45%;
+  animation: heroKenBurns 26s ease-in-out infinite alternate;
+}
+@keyframes heroKenBurns {
+  from { scale: 1.05; }
+  to   { scale: 1.15; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coffeenesia-hero .brand-hero-bg,
+  .coconesia-hero .brand-hero-bg { animation: none; scale: 1.06; }
+}
+
+/* Warm/cool bloom rising behind the headline */
+.coffeenesia-hero .brand-hero-content::before,
+.coconesia-hero .brand-hero-content::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -18%; top: 6%;
+  width: 72%; height: 92%;
+  filter: blur(48px);
+  pointer-events: none;
+}
+.coffeenesia-hero .brand-hero-content::before {
+  background: radial-gradient(circle at 30% 50%, rgba(201,169,110,0.16), transparent 62%);
+}
+.coconesia-hero .brand-hero-content::before {
+  background: radial-gradient(circle at 30% 50%, rgba(78,200,130,0.15), transparent 62%);
+}
+
+/* Thin accent seam along the base of each brand hero */
+.coffeenesia-hero::after,
+.coconesia-hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px; z-index: 4; opacity: 0.5;
+}
+.coffeenesia-hero::after {
+  background: linear-gradient(90deg, transparent, var(--gold-dim) 22%, var(--gold) 50%, var(--gold-dim) 78%, transparent);
+}
+.coconesia-hero::after {
+  background: linear-gradient(90deg, transparent, var(--green-dim) 22%, var(--green-bright) 50%, var(--green-dim) 78%, transparent);
+}
+
+/* ── Coffeenesia hero — real coffee-cherry photograph ── */
+.coffeenesia-hero .brand-hero-bg {
+  background-image: url('assets/img/coffee-hero.jpg');
+  background-position: 68% 42%;
+  filter: brightness(0.66) saturate(1.06) contrast(1.03);
+}
+.coffeenesia-hero .brand-hero-overlay {
+  background:
+    linear-gradient(to top, var(--black) 0%, rgba(8,8,8,0) 40%),
+    linear-gradient(102deg,
+      rgba(8,8,8,0.94) 0%, rgba(22,12,5,0.80) 28%,
+      rgba(22,12,5,0.34) 56%, rgba(8,8,8,0.06) 100%),
+    radial-gradient(135% 130% at 28% 46%, transparent 38%, rgba(0,0,0,0.5) 100%);
+}
+
+/* ── Coconesia hero — real copra photograph ── */
+.coconesia-hero .brand-hero-bg {
+  background-image: url('assets/img/coco-hero.jpg');
+  background-position: 62% 48%;
+  filter: brightness(0.6) saturate(1.05) contrast(1.03);
 }
 .coconesia-hero .brand-hero-overlay {
-  background: linear-gradient(135deg,
-    rgba(8,8,8,0.85) 0%,
-    rgba(5,14,10,0.65) 50%,
-    rgba(8,8,8,0.5) 100%);
+  background:
+    linear-gradient(to top, var(--black) 0%, rgba(8,8,8,0) 40%),
+    linear-gradient(102deg,
+      rgba(8,8,8,0.94) 0%, rgba(5,18,12,0.80) 28%,
+      rgba(5,18,12,0.34) 56%, rgba(8,8,8,0.06) 100%),
+    radial-gradient(135% 130% at 28% 46%, transparent 38%, rgba(0,0,0,0.5) 100%);
 }
 
 .brand-hero-content {
@@ -1201,13 +1275,21 @@ body { cursor: none; }
 .brand-card:hover .brand-card-bg { transform: scale(1.08); }
 
 .brand-card-coffee .brand-card-bg {
-  background: radial-gradient(ellipse at 40% 60%, rgba(201,169,110,0.3) 0%, transparent 60%),
-    linear-gradient(160deg, #1a0f06 0%, #2d1a0a 100%);
+  background-image:
+    linear-gradient(160deg, rgba(26,15,6,0.55) 0%, rgba(45,26,10,0.45) 100%),
+    radial-gradient(ellipse at 40% 60%, rgba(201,169,110,0.22) 0%, transparent 60%),
+    url('assets/img/coffee-hero.jpg');
+  background-size: cover;
+  background-position: 60% center;
 }
 
 .brand-card-coconut .brand-card-bg {
-  background: radial-gradient(ellipse at 60% 40%, rgba(46,158,91,0.3) 0%, transparent 60%),
-    linear-gradient(160deg, #071410 0%, #0e2219 100%);
+  background-image:
+    linear-gradient(160deg, rgba(7,20,16,0.55) 0%, rgba(14,34,25,0.45) 100%),
+    radial-gradient(ellipse at 60% 40%, rgba(46,158,91,0.22) 0%, transparent 60%),
+    url('assets/img/coco-hero.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .brand-card-overlay {

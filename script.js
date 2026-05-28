@@ -23,36 +23,37 @@ function initScrollProgress() {
 /* ── Custom Cursor ── */
 function initCursor() {
   if (window.matchMedia('(hover: none)').matches) return;
-  const wrap = document.createElement('div');
-  wrap.className = 'cursor';
-  wrap.innerHTML = '<div class="cursor-dot"></div><div class="cursor-ring"></div>';
-  document.body.appendChild(wrap);
 
-  const dot = wrap.querySelector('.cursor-dot');
-  const ring = wrap.querySelector('.cursor-ring');
+  const ring = document.createElement('div');
+  ring.className = 'cursor-ring';
+  document.body.appendChild(ring);
 
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  let tx = -100, ty = -100, cx = -100, cy = -100;
+  let visible = false;
 
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-  });
+    tx = e.clientX; ty = e.clientY;
+    if (!visible) { visible = true; ring.classList.add('visible'); }
+  }, { passive: true });
 
   function lerp(a, b, t) { return a + (b - a) * t; }
   function animate() {
-    rx = lerp(rx, mx, 0.12); ry = lerp(ry, my, 0.12);
-    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    cx = lerp(cx, tx, 0.14);
+    cy = lerp(cy, ty, 0.14);
+    ring.style.transform = `translate(calc(${cx}px - 50%), calc(${cy}px - 50%))`;
     requestAnimationFrame(animate);
   }
   animate();
 
-  const hoverEls = 'a, button, .product-card, .split-panel, .vision-card, .activity-card, .brand-card';
+  const hoverSel = 'a, button, .product-card, .split-panel, .vision-card, .activity-card, .brand-card';
   document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverEls)) ring.classList.add('hovered');
+    if (e.target.closest(hoverSel)) ring.classList.add('hovered');
   });
   document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverEls)) ring.classList.remove('hovered');
+    if (e.target.closest(hoverSel)) ring.classList.remove('hovered');
   });
+  document.addEventListener('mouseleave', () => ring.classList.remove('visible'));
+  document.addEventListener('mouseenter', () => ring.classList.add('visible'));
 }
 
 /* ── Header Scroll ── */
@@ -266,9 +267,15 @@ function initLanguage() {
 function initParallax() {
   const bg = qs('.brand-hero-bg');
   if (!bg) return;
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    bg.style.transform = `translateY(${y * 0.35}px)`;
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        bg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+        ticking = false;
+      });
+      ticking = true;
+    }
   }, { passive: true });
 }
 
