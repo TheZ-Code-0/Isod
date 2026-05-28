@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — RAGA ISOD NUSANTARA</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Company hero mesh */
+    .company-page .brand-hero {
+      background: var(--black);
+    }
+    .company-page .brand-hero-bg {
+      background:
+        radial-gradient(ellipse at 20% 70%, rgba(201,169,110,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(46,158,91,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(139,90,43,0.1) 0%, transparent 40%),
+        linear-gradient(160deg, #080808 0%, #0f0f0f 50%, #080808 100%);
+      filter: none;
+    }
+    .company-page .brand-hero-overlay {
+      background: rgba(8,8,8,0.4);
+    }
+
+    /* Hero decorative grid lines */
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-grid-lines::before,
+    .hero-grid-lines::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.03);
+    }
+    .hero-grid-lines::before {
+      left: 33.33%; top: 0; bottom: 0; width: 1px;
+    }
+    .hero-grid-lines::after {
+      left: 66.66%; top: 0; bottom: 0; width: 1px;
+    }
+
+    /* Horizontal lines */
+    .hero-grid-h {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-grid-h::before {
+      content: '';
+      position: absolute;
+      top: 33.33%; left: 0; right: 0; height: 1px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 60px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), var(--green), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 56px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.7s cubic-bezier(0.23,1,0.32,1);
+      transition-delay: var(--delay, 0s);
+    }
+    .timeline-item.revealed { opacity: 1; transform: translateX(0); }
+    .timeline-dot {
+      position: absolute;
+      left: -48px; top: 4px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--dark2);
+      box-shadow: 0 0 0 4px var(--gold-dim);
+    }
+    .timeline-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+      opacity: 0.9;
+    }
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .timeline-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--white-dim);
+      max-width: 480px;
+    }
+
+    /* Values marquee */
+    .values-marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 20px 0;
+      background: var(--dark3);
+    }
+    .values-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+    .values-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 48px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--white-dim);
+      white-space: nowrap;
+    }
+    .values-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Blockquote styling */
+    .company-quote {
+      background: var(--dark3);
+      border: 1px solid var(--glass-border);
+      border-left: 3px solid var(--green);
+      padding: 48px 56px;
+      margin: 40px 0;
+      border-radius: 2px;
+      position: relative;
+    }
+    .company-quote::before {
+      content: '"';
+      position: absolute;
+      top: -20px; left: 40px;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: var(--green-dim);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .company-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.65;
+      position: relative;
+    }
+
+    /* Mission cards */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .mission-card {
+      padding: 48px 40px;
+      background: var(--dark3);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+    .mission-card.gold-card::before { background: var(--gold); }
+    .mission-card.green-card::before { background: var(--green); }
+    .mission-card:hover { transform: translateY(-6px); box-shadow: var(--card-shadow); }
+    .mission-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .mission-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .mission-desc {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--white-dim);
+    }
+
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .timeline { padding-left: 40px; }
+      .company-quote { padding: 32px; }
+    }
+  </style>
+</head>
+<body class="company-page">
+
+  <!-- Header -->
+  <header class="header header-solid scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/favicon.png" alt="Logo" class="logo-img">
+        <span class="logo-text">RAGA ISOD NUSANTARA</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#brands" class="nav-link" data-i18n="nav_brand">Brand</a>
+        <a href="company.html" class="nav-link active" data-i18n="nav_about">About Us</a>
+        <a href="#activity" class="nav-link" data-i18n="nav_activity">Activity</a>
+        <a href="#shop" class="nav-link" data-i18n="nav_shop">Shop</a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch Language">
+          <span class="lang-label" id="langLabel">ID</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <nav class="mobile-nav">
+      <a href="#brands" class="mobile-nav-link" data-i18n="nav_brand">Brand</a>
+      <a href="company.html" class="mobile-nav-link" data-i18n="nav_about">About Us</a>
+      <a href="#activity" class="mobile-nav-link" data-i18n="nav_activity">Activity</a>
+      <a href="#shop" class="mobile-nav-link" data-i18n="nav_shop">Shop</a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="brand-hero company-hero">
+    <div class="brand-hero-bg"></div>
+    <div class="brand-hero-overlay"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-grid-h"></div>
+
+    <div class="brand-hero-content">
+      <div class="brand-hero-eyebrow">
+        <div class="brand-hero-eyebrow-line"></div>
+        <span class="brand-hero-subtitle" data-i18n="company_subtitle">About Us</span>
+      </div>
+      <h1 class="brand-hero-title" data-i18n="company_hero_title">Raga Isod<br>Nusantara</h1>
+      <p class="brand-hero-desc" data-i18n="company_hero_desc">
+        Planting Hope, Managing Diversity. Integrating the wealth of Nusantara's natural resources with inclusive values.
+      </p>
+    </div>
+
+    <div class="brand-hero-scroll">
+      <span>Scroll Down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Values Marquee -->
+  <div class="values-marquee">
+    <div class="values-track">
+      <div class="values-item"><span class="values-dot"></span>Inclusive by Design</div>
+      <div class="values-item"><span class="values-dot"></span>Ethical Supply Chain</div>
+      <div class="values-item"><span class="values-dot"></span>Community First</div>
+      <div class="values-item"><span class="values-dot"></span>Premium Quality</div>
+      <div class="values-item"><span class="values-dot"></span>Nature Inspired</div>
+      <div class="values-item"><span class="values-dot"></span>Indonesian Heritage</div>
+      <div class="values-item"><span class="values-dot"></span>Sustainable Future</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="values-item"><span class="values-dot"></span>Inclusive by Design</div>
+      <div class="values-item"><span class="values-dot"></span>Ethical Supply Chain</div>
+      <div class="values-item"><span class="values-dot"></span>Community First</div>
+      <div class="values-item"><span class="values-dot"></span>Premium Quality</div>
+      <div class="values-item"><span class="values-dot"></span>Nature Inspired</div>
+      <div class="values-item"><span class="values-dot"></span>Indonesian Heritage</div>
+      <div class="values-item"><span class="values-dot"></span>Sustainable Future</div>
+    </div>
+  </div>
+
+  <!-- Story Section -->
+  <section class="section company-story" id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image reveal-left">
+          <img src="assets/img/coffee.png" alt="Indonesian landscape" loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=640&q=80'">
+        </div>
+        <div class="story-text reveal-right">
+          <span class="section-label" data-i18n="our_heritage">Genesis & Evolution</span>
+          <h2 class="section-title" data-i18n="company_story_title">From Idea to Economic Sovereignty</h2>
+          <div class="timeline" style="margin-top: 32px;">
+            <div class="timeline-item" style="--delay: 0.1s">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">2017</div>
+              <h3 class="timeline-title">ISOD Founded</h3>
+              <p class="timeline-desc">A youth movement in Bekasi City dedicated to inclusivity studies, establishing the Indonesian School of Diversity.</p>
+            </div>
+            <div class="timeline-item" style="--delay: 0.25s">
+              <div class="timeline-dot" style="background: var(--green); box-shadow: 0 0 0 4px var(--green-dim);"></div>
+              <div class="timeline-year" style="color: var(--green);">2025</div>
+              <h3 class="timeline-title">Grand Transformation</h3>
+              <p class="timeline-desc">Raga ISOD Nusantara channels inclusive values into productive economic sectors, connecting local farmers from diverse backgrounds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="section company-philosophy" id="philosophy">
+    <div class="container">
+      <div class="section-header reveal-up" style="text-align:center; margin-bottom: 3rem;">
+        <span class="section-label" data-i18n="philosophy_label">Name Philosophy</span>
+        <h2 class="section-title" data-i18n="philosophy_title">Unity of Thought & Action</h2>
+      </div>
+      <div class="vision-grid">
+        <div class="vision-card reveal-up">
+          <h3 class="vision-title" style="color: var(--gold);" data-i18n="">Raga</h3>
+          <p class="vision-desc" data-i18n="phil_raga">Represents the living organizational body that moves, operates, and acts tangibly within an inclusive environment.</p>
+        </div>
+        <div class="vision-card reveal-up" style="--delay: 0.15s">
+          <h3 class="vision-title" style="color: var(--green);" data-i18n="">ISOD</h3>
+          <p class="vision-desc" data-i18n="phil_isod">Our soul and intellectual compass. A knowledge hub ensuring every corporate milestone is grounded in social justice and mutual respect.</p>
+        </div>
+        <div class="vision-card reveal-up" style="--delay: 0.3s">
+          <h3 class="vision-title" style="color: #b07a45;" data-i18n="">Nusantara</h3>
+          <p class="vision-desc" data-i18n="phil_nusantara">The geographical and cultural space where we are deeply rooted. The land where biodiversity and humanity converge to unlock infinite potential.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="section" style="background: var(--dark);">
+    <div class="container">
+      <div class="section-header reveal-up" style="text-align: center; margin-bottom: 48px;">
+        <span class="section-label">Mission & Vision</span>
+        <h2 class="section-title">What Drives Us Forward</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card gold-card reveal-left">
+          <span class="mission-icon">🌾</span>
+          <h3 class="mission-title">Our Mission</h3>
+          <p class="mission-desc">To connect Indonesia's diverse farming communities into a unified production ecosystem, creating equitable economic prosperity while preserving cultural heritage and natural biodiversity.</p>
+        </div>
+        <div class="mission-card green-card reveal-right">
+          <span class="mission-icon">🌐</span>
+          <h3 class="mission-title">Our Vision</h3>
+          <p class="mission-desc">To become the leading ethical supply chain platform for Indonesian premium commodities — proving that inclusive values and economic success are not just compatible, but inseparable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Vision -->
+  <section class="section company-global-vision" id="global-vision">
+    <div class="container">
+      <div style="max-width: 800px; margin: 0 auto; text-align: center;" class="reveal-up">
+        <span class="section-label" data-i18n="global_vision_label">Global Vision</span>
+        <h2 class="section-title" data-i18n="global_vision_title">An Ethical Supply Chain for the World</h2>
+        <p class="section-desc" style="font-size: 1.1rem; line-height: 1.85;" data-i18n="global_vision_desc">
+          We bring Nusantara's premium commodities to the global market with the highest standards of integrity. Beyond commodities, we offer an <strong style="color: var(--white);">"Ethical Supply Chain"</strong> — inviting international business partners to collaborate under the principles of equality, transparency, and democratically responsible governance.
+        </p>
+        <div class="company-quote reveal-up" style="--delay: 0.2s; text-align: left; margin-top: 48px;">
+          <p data-i18n="global_vision_quote">"We guarantee that every harvest we distribute carries a story of justice for local farming communities and harmony in diversity."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Stats -->
+  <section style="background: var(--dark3); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+    <div class="container">
+      <div class="stats-grid" style="margin: 0;">
+        <div class="stat-item" style="border: none; border-right: 1px solid var(--glass-border);">
+          <div class="stat-number" data-count="2017" data-suffix="">2017</div>
+          <div class="stat-label">Founded</div>
+        </div>
+        <div class="stat-item" style="border: none; border-right: 1px solid var(--glass-border);">
+          <div class="stat-number" data-count="2">2+</div>
+          <div class="stat-label">Premium Brands</div>
+        </div>
+        <div class="stat-item" style="border: none;">
+          <div class="stat-number">Bekasi</div>
+          <div class="stat-label">Headquarters</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <section class="section" id="brands" style="background: var(--dark2);">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label" data-i18n="nav_brand">Our Brands</span>
+        <h2 class="section-title">Heritage Crafted Into Products</h2>
+      </div>
+      <div class="brands-grid">
+        <a href="coffeenesia.html" class="brand-card brand-card-coffee reveal-up">
+          <div class="brand-card-bg"></div>
+          <div class="brand-card-overlay"></div>
+          <div class="brand-card-content">
+            <h3 class="brand-card-name">Nuri Coffeenesia</h3>
+            <p data-i18n="company_brand_coffee_desc">Premium Indonesian single-origin and blended coffees, roasted to perfection.</p>
+            <span class="brand-card-link" data-i18n="explore_brand">Explore Brand →</span>
+          </div>
+        </a>
+        <a href="coconesia.html" class="brand-card brand-card-coconut reveal-up" style="--delay: 0.15s">
+          <div class="brand-card-bg"></div>
+          <div class="brand-card-overlay"></div>
+          <div class="brand-card-content">
+            <h3 class="brand-card-name">Nuri Coconesia</h3>
+            <p data-i18n="company_brand_coconut_desc">Pure, sustainable coconut products crafted from Indonesia's finest harvests.</p>
+            <span class="brand-card-link" style="color: var(--green-bright);" data-i18n="explore_brand">Explore Brand →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activity -->
+  <section class="section company-activity" id="activity" style="background: var(--dark);">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label" data-i18n="nav_activity">Activity</span>
+        <h2 class="section-title" data-i18n="company_activity_title">Our Latest Endeavors</h2>
+      </div>
+      <div class="activity-grid">
+        <div class="activity-card reveal-up">
+          <div class="activity-image">
+            <img src="assets/img/coffee.png" alt="Activity"
+              onerror="this.src='https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=640&q=80'" loading="lazy">
+          </div>
+          <div class="activity-info">
+            <span class="activity-date">December 2024</span>
+            <h3 class="activity-title" data-i18n="activity_1_title">Sustainable Farming Summit</h3>
+            <p class="activity-desc" data-i18n="activity_1_desc">Bringing together agricultural innovators to share sustainable practices and shape the future of Indonesian farming.</p>
+          </div>
+        </div>
+        <div class="activity-card reveal-up" style="--delay: 0.15s">
+          <div class="activity-image">
+            <img src="assets/img/coco.png" alt="Activity"
+              onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=640&q=80'" loading="lazy">
+          </div>
+          <div class="activity-info">
+            <span class="activity-date">November 2024</span>
+            <h3 class="activity-title" data-i18n="activity_2_title">Community Harvest Festival</h3>
+            <p class="activity-desc" data-i18n="activity_2_desc">Celebrating the dedication of our farming communities with cultural events, workshops, and shared gratitude.</p>
+          </div>
+        </div>
+        <div class="activity-card reveal-up" style="--delay: 0.3s">
+          <div class="activity-image">
+            <img src="assets/img/coffee.png" alt="Activity"
+              onerror="this.src='https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=640&q=80'" loading="lazy">
+          </div>
+          <div class="activity-info">
+            <span class="activity-date">October 2024</span>
+            <h3 class="activity-title" data-i18n="activity_3_title">International Trade Expo</h3>
+            <p class="activity-desc" data-i18n="activity_3_desc">Showcasing Indonesia's finest coffee and coconut products to global markets and distribution partners.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section brand-cta">
+    <div class="container">
+      <div class="cta-content reveal-up">
+        <h2 class="cta-title" data-i18n="company_cta_title">Join Our Journey</h2>
+        <p class="cta-desc" data-i18n="company_cta_desc">Become part of a movement that celebrates diversity, empowers farming communities, and delivers nature's finest to the world stage.</p>
+        <div class="cta-buttons">
+          <a href="coffeenesia.html" class="btn-primary" data-i18n="explore_coffee">Explore Coffee</a>
+          <a href="coconesia.html" class="btn-primary btn-green" data-i18n="explore_coconut">Explore Coconut</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo footer-logo">
+            <img src="assets/img/favicon.png" alt="Logo" class="logo-img">
+            <span class="logo-text">RAGA ISOD NUSANTARA</span>
+          </a>
+          <p class="footer-tagline">Managing diversity, cultivating the future of Nusantara's commodities.</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_brands">Brands</h4>
+          <a href="coffeenesia.html" class="footer-link">Nuri Coffeenesia</a>
+          <a href="coconesia.html" class="footer-link">Nuri Coconesia</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_company">Company</h4>
+          <a href="company.html" class="footer-link" data-i18n="nav_about">About Us</a>
+          <a href="#activity" class="footer-link" data-i18n="nav_activity">Activity</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_connect">Connect</h4>
+          <a href="https://instagram.com/nuri_coffeenesia" class="footer-link" target="_blank">Instagram</a>
+          <a href="https://wa.me/6281293220622" class="footer-link" target="_blank">WhatsApp</a>
+          <a href="https://linkedin.com/company/raga-isod-nusantara" class="footer-link" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raga Isod Nusantara. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281293220622" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

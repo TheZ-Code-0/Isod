@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuri Coconesia — RAGA ISOD NUSANTARA</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .coconesia-hero .brand-hero-bg {
+      background-image: url('assets/img/coco.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Floating leaf decorations */
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.1;
+    }
+    .leaf-1 {
+      width: 100px; height: 40px;
+      background: radial-gradient(ellipse at 30% 50%, var(--green-bright), transparent);
+      border-radius: 50% 50% 50% 0 / 50% 50% 50% 0;
+      top: 22%; right: 10%;
+      animation: floatLeaf 10s ease-in-out infinite;
+      transform: rotate(-30deg);
+    }
+    .leaf-2 {
+      width: 60px; height: 25px;
+      background: radial-gradient(ellipse, #a8f0c0, transparent);
+      border-radius: 50% 50% 50% 0 / 50% 50% 50% 0;
+      bottom: 30%; left: 8%;
+      animation: floatLeaf 14s ease-in-out infinite -5s;
+      transform: rotate(20deg);
+      opacity: 0.07;
+    }
+    .leaf-3 {
+      width: 40px; height: 18px;
+      background: radial-gradient(ellipse, var(--green), transparent);
+      border-radius: 50% 50% 50% 0 / 50% 50% 50% 0;
+      top: 50%; right: 20%;
+      animation: floatLeaf 8s ease-in-out infinite -3s;
+      transform: rotate(10deg);
+    }
+
+    @keyframes floatLeaf {
+      0%, 100% { transform: translateY(0) rotate(-30deg); }
+      50% { transform: translateY(-20px) rotate(-25deg); }
+    }
+
+    /* Coconut stats */
+    .coconesia-stats {
+      background: var(--dark3);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .coconesia-stats .stats-grid { margin: 0; }
+    .coconesia-stats .stat-item {
+      border: none;
+      border-right: 1px solid var(--glass-border);
+    }
+    .coconesia-stats .stat-item:last-child { border-right: none; }
+    .coconesia-stats .stat-number { color: var(--green); }
+
+    /* Benefits section */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+    .benefit-card {
+      padding: 40px 28px;
+      background: var(--dark3);
+      border: 1px solid var(--glass-border);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .benefit-card:hover { transform: translateY(-6px); background: var(--surface); }
+    .benefit-card:hover::after { transform: scaleX(1); }
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(78,200,130,0.4));
+    }
+    .benefit-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .benefit-desc {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--white-dim);
+    }
+
+    @media (max-width: 900px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .benefits-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body class="brand-page coconesia-page">
+
+  <!-- Header -->
+  <header class="header header-solid scrolled" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/favicon.png" alt="Logo" class="logo-img">
+        <span class="logo-text">RAGA ISOD NUSANTARA</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="company.html#brands" class="nav-link" data-i18n="nav_brand">Brand</a>
+        <a href="company.html" class="nav-link" data-i18n="nav_about">About Us</a>
+        <a href="company.html#activity" class="nav-link" data-i18n="nav_activity">Activity</a>
+        <a href="#shop" class="nav-link" data-i18n="nav_shop">Shop</a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" aria-label="Switch Language">
+          <span class="lang-label" id="langLabel">ID</span>
+        </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay">
+    <nav class="mobile-nav">
+      <a href="company.html#brands" class="mobile-nav-link" data-i18n="nav_brand">Brand</a>
+      <a href="company.html" class="mobile-nav-link" data-i18n="nav_about">About Us</a>
+      <a href="company.html#activity" class="mobile-nav-link" data-i18n="nav_activity">Activity</a>
+      <a href="#shop" class="mobile-nav-link" data-i18n="nav_shop">Shop</a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="brand-hero coconesia-hero">
+    <div class="brand-hero-bg"></div>
+    <div class="brand-hero-overlay"></div>
+
+    <div class="leaf-deco leaf-1"></div>
+    <div class="leaf-deco leaf-2"></div>
+    <div class="leaf-deco leaf-3"></div>
+
+    <div class="brand-hero-content">
+      <div class="brand-hero-eyebrow">
+        <div class="brand-hero-eyebrow-line"></div>
+        <span class="brand-hero-subtitle" data-i18n="coconut_subtitle">Premium Coconut</span>
+      </div>
+      <h1 class="brand-hero-title">Nuri<br>Coconesia</h1>
+      <p class="brand-hero-desc" data-i18n="coconesia_hero_desc">
+        From the sun-kissed coconut groves of Indonesia — pure, sustainable, and crafted for those who seek nature's finest tropical treasures.
+      </p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn-primary btn-green" data-i18n="coconesia_hero_cta">Discover Our Coconut</a>
+        <a href="pdf/coconesia-brand-profile.pdf" download class="btn-primary btn-light">
+          Download Profile (PDF)
+        </a>
+      </div>
+    </div>
+
+    <div class="brand-hero-scroll">
+      <span data-i18n="scroll_down">Scroll Down</span>
+      <div class="scroll-line green"></div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="coconesia-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-count="100" data-suffix="%">100%</div>
+          <div class="stat-label">Organically Sourced</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="3" data-suffix="+ Products">3+ Products</div>
+          <div class="stat-label">Product Range</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Cold-Press</div>
+          <div class="stat-label">Extraction Method</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="section brand-story" id="story">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image reveal-left">
+          <img src="assets/img/coco.png" alt="Coconut plantation" loading="lazy"
+            onerror="this.src='https://images.unsplash.com/photo-1580984969071-a8da8e424bfa?w=640&q=80'">
+        </div>
+        <div class="story-text reveal-right">
+          <span class="section-label label-green" data-i18n="our_story">Our Story</span>
+          <h2 class="section-title" data-i18n="coconesia_story_title">Nurtured by the Tropical Sun</h2>
+          <p class="section-desc" data-i18n="coconesia_story_desc">
+            Nuri Coconesia celebrates the extraordinary versatility of Indonesia's coconut heritage. From pristine coastal groves to your table, we transform nature's most versatile fruit into products of exceptional quality and purity.
+          </p>
+          <p class="section-desc" data-i18n="coconesia_story_desc2">
+            Every harvest is a testament to sustainable farming practices, working hand-in-hand with local communities who have cultivated coconuts for generations, preserving ancestral wisdom while embracing innovation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section" style="background: var(--dark); padding-top: 0;">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label label-green">Why Coconesia</span>
+        <h2 class="section-title">Nature's Most Versatile Gift</h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal-up">
+          <span class="benefit-icon">🌿</span>
+          <h4 class="benefit-title">100% Organic</h4>
+          <p class="benefit-desc">No pesticides, no chemicals — just the purest tropical goodness from certified organic groves.</p>
+        </div>
+        <div class="benefit-card reveal-up" style="--delay:0.1s">
+          <span class="benefit-icon">🧊</span>
+          <h4 class="benefit-title">Cold-Pressed</h4>
+          <p class="benefit-desc">Gentle cold-press extraction retains maximum nutrients, enzymes, and natural flavors.</p>
+        </div>
+        <div class="benefit-card reveal-up" style="--delay:0.2s">
+          <span class="benefit-icon">🤝</span>
+          <h4 class="benefit-title">Fair Trade</h4>
+          <p class="benefit-desc">Every purchase supports local farmers and coastal communities across Indonesia.</p>
+        </div>
+        <div class="benefit-card reveal-up" style="--delay:0.3s">
+          <span class="benefit-icon">♻️</span>
+          <h4 class="benefit-title">Sustainable</h4>
+          <p class="benefit-desc">Eco-conscious packaging and zero-waste processing for a healthier planet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="section brand-products" id="products">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label label-green" data-i18n="our_products">Our Products</span>
+        <h2 class="section-title" data-i18n="coconesia_products_title">Nature's Finest Offerings</h2>
+      </div>
+      <div class="products-grid">
+        <div class="product-card reveal-up">
+          <div class="product-image">
+            <img src="assets/img/coco.png" alt="Virgin Coconut Oil"
+              onerror="this.src='https://images.unsplash.com/photo-1559181567-c3190bebb3c4?w=640&q=80'" loading="lazy">
+            <div class="product-overlay overlay-green"><span class="product-tag">Bestseller</span></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Virgin Coconut Oil</h3>
+            <p class="product-desc" data-i18n="coco_product1_desc">Cold-pressed, unrefined. The purest expression of tropical coconut.</p>
+          </div>
+        </div>
+        <div class="product-card reveal-up" style="--delay: 0.15s">
+          <div class="product-image">
+            <img src="assets/img/coco.png" alt="Coconut Milk"
+              onerror="this.src='https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=640&q=80'" loading="lazy">
+            <div class="product-overlay overlay-green"><span class="product-tag">Artisan</span></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Coconut Milk</h3>
+            <p class="product-desc" data-i18n="coco_product2_desc">Delicately balanced, sourced from select highland coconut groves.</p>
+          </div>
+        </div>
+        <div class="product-card reveal-up" style="--delay: 0.3s">
+          <div class="product-image">
+            <img src="assets/img/coco.png" alt="Coconut Sugar"
+              onerror="this.src='https://images.unsplash.com/photo-1551024506-0bccd828d307?w=640&q=80'" loading="lazy">
+            <div class="product-overlay overlay-green"><span class="product-tag">Premium</span></div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Coconut Sugar</h3>
+            <p class="product-desc" data-i18n="coco_product3_desc">Low-glycemic, artisan-crafted sweetener with rich caramel undertones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section brand-process" id="process">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-label label-green" data-i18n="our_process">Our Process</span>
+        <h2 class="section-title" data-i18n="coconesia_process_title">From Grove to Goodness</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal-up">
+          <span class="process-number">01</span>
+          <div class="process-icon icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+              <path d="M12 2C8 2 4 6 4 10c0 4 4 8 8 12 4-4 8-8 8-12s-4-8-8-8z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <h3 class="process-title" data-i18n="process_cultivate">Cultivate</h3>
+          <p class="process-desc" data-i18n="coco_process_cultivate_desc">Sustainably grown in Indonesia's pristine tropical coastal groves.</p>
+        </div>
+        <div class="process-step reveal-up" style="--delay: 0.15s">
+          <span class="process-number">02</span>
+          <div class="process-icon icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="process-title" data-i18n="process_extract">Extract</h3>
+          <p class="process-desc" data-i18n="coco_process_extract_desc">Gentle cold-press extraction preserving all natural goodness.</p>
+        </div>
+        <div class="process-step reveal-up" style="--delay: 0.3s">
+          <span class="process-number">03</span>
+          <div class="process-icon icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <h3 class="process-title" data-i18n="process_certify">Certify</h3>
+          <p class="process-desc" data-i18n="coco_process_certify_desc">Rigorous quality standards ensuring organic, sustainable purity.</p>
+        </div>
+        <div class="process-step reveal-up" style="--delay: 0.45s">
+          <span class="process-number">04</span>
+          <div class="process-icon icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="process-title" data-i18n="process_enjoy">Enjoy</h3>
+          <p class="process-desc" data-i18n="coco_process_enjoy_desc">Pure tropical nourishment — for body, skin, and culinary artistry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section brand-cta cta-green">
+    <div class="container">
+      <div class="cta-content reveal-up">
+        <h2 class="cta-title" data-i18n="coconesia_cta_title">Embrace the Tropical Essence</h2>
+        <p class="cta-desc" data-i18n="coconesia_cta_desc">Discover the extraordinary versatility of Indonesia's coconut heritage — sustainable, pure, and crafted with care.</p>
+        <a href="#shop" class="btn-primary btn-green" data-i18n="shop_now">Shop Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo footer-logo">
+            <img src="assets/img/favicon.png" alt="Logo" class="logo-img">
+            <span class="logo-text">RAGA ISOD NUSANTARA</span>
+          </a>
+          <p class="footer-tagline" data-i18n="footer_tagline">Crafting premium Indonesian heritage, one sip at a time.</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_brands">Brands</h4>
+          <a href="coffeenesia.html" class="footer-link">Nuri Coffeenesia</a>
+          <a href="coconesia.html" class="footer-link">Nuri Coconesia</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_company">Company</h4>
+          <a href="company.html" class="footer-link" data-i18n="nav_about">About Us</a>
+          <a href="company.html#activity" class="footer-link" data-i18n="nav_activity">Activity</a>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading" data-i18n="footer_connect">Connect</h4>
+          <a href="https://instagram.com/nuri_coffeenesia" class="footer-link" target="_blank">Instagram</a>
+          <a href="https://wa.me/6281293220622" class="footer-link" target="_blank">WhatsApp</a>
+          <a href="https://linkedin.com/company/raga-isod-nusantara" class="footer-link" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Raga Isod Nusantara. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/6281293220622" target="_blank" class="whatsapp-float whatsapp-float-green" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
