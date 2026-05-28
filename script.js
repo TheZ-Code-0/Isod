@@ -14,9 +14,15 @@ function initScrollProgress() {
   bar.className = 'scroll-progress';
   document.body.prepend(bar);
   window.addEventListener('scroll', () => {
-    const h = document.documentElement;
-    const pct = (window.scrollY / (h.scrollHeight - h.clientHeight)) * 100;
-    bar.style.width = pct + '%';
+    if (bar._ticking) return;
+    bar._ticking = true;
+    requestAnimationFrame(() => {
+      const h = document.documentElement;
+      const denom = h.scrollHeight - h.clientHeight;
+      const r = denom > 0 ? window.scrollY / denom : 0;
+      bar.style.transform = 'scaleX(' + r + ')';
+      bar._ticking = false;
+    });
   }, { passive: true });
 }
 
@@ -265,18 +271,29 @@ function initLanguage() {
 
 /* ── Parallax Hero BG ── */
 function initParallax() {
+  const hero = qs('.brand-hero');
   const bg = qs('.brand-hero-bg');
   if (!bg) return;
   let ticking = false;
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        bg.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-        ticking = false;
-      });
-      ticking = true;
-    }
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      // only translate the hero while it is still on screen
+      if (y < window.innerHeight) {
+        bg.style.transform = `translateY(${y * 0.3}px)`;
+      }
+      ticking = false;
+    });
   }, { passive: true });
+
+  // pause the Ken-Burns zoom whenever the hero is scrolled out of view
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => bg.classList.toggle('anim-paused', !e.isIntersecting));
+    }, { threshold: 0 }).observe(hero);
+  }
 }
 
 /* ── Landing Page Canvas Particles (Three.js-style via Canvas 2D) ── */
